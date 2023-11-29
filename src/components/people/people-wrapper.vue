@@ -8,7 +8,7 @@ console.log(user.dm_chats)
 <template>
   <div class="shadow-sm h-[35%] bg-background-200 self-stretch flex grow flex-col mt-9 px-2 pt-9 pb-12 rounded-3xl">
     <div class="text-text-900 h-[10%] text-3xl ml-5 font-bold tracking-widest self-stretch whitespace-nowrap">
-      People
+      Direct Chats
     </div>
 
     <div class="h-[90%] overflow-scroll">
