@@ -5,12 +5,16 @@ import groupWrapper from './components/group/group-wrapper.vue'
 import peopleWrapper from './components/people/people-wrapper.vue'
 import conversationWrapper from './components/conversation/conversation-wrapper.vue'
 import emptyConversation from './components/conversation/empty-conversation.vue'
-
+import { onMounted } from 'vue'
+import { useChatStore } from './stores/chat'
 import { useUserStore } from './stores/user'
 
+const chat = useChatStore()
 const user = useUserStore()
-user.findChats()
+
+chat.findChats();
 </script>
+
 
 <template>
   <div class="bg-background-100 p-9 max-md:px-5 font-mono h-screen">

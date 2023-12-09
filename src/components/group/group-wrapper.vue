@@ -1,5 +1,15 @@
 <script setup>
 import groupListing from './group-listing.vue'
+// import { useUserStore } from '../../stores/user'
+import { useChatStore } from '../../stores/chat'
+import { watch } from 'vue';
+import { storeToRefs } from 'pinia'
+
+const chat = useChatStore()
+const { gm_chats: gm_chats } = storeToRefs(chat)
+watch(gm_chats,(previous,newChat )=>{
+  console.log(newChat)
+})
 </script>
 <template>
   <div
@@ -11,14 +21,7 @@ import groupListing from './group-listing.vue'
       Group Chats
     </div>
     <div class="h-[90%] overflow-scroll">
-      <groupListing />
-      <groupListing />
-      <groupListing />
-      <groupListing />
-      <groupListing />
-      <groupListing />
-      <groupListing />
-
+      <groupListing v-for="gm_chat in gm_chats" :gm_chat="gm_chat" />
     </div>
   </div>
 </template>

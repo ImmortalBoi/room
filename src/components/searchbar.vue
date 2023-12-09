@@ -4,7 +4,7 @@
   >
     <input
       type="text"
-      class="text-text-950 bg-background-50 text-3xl w-full tracking-widest whitespace-nowrap my-auto"
+      class="text-text-950 bg-background-50 text-3xl w-full tracking-widest whitespace-nowrap my-auto focus:outline-none"
       placeholder="Search"
     />
   </div>
