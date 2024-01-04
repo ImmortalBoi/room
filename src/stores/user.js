@@ -8,6 +8,8 @@ export const useUserStore = defineStore('user', {
   state: () => ({
     id: '',
     currentChatID: '',
+    renderFriends: true,
+    renderRequests: true,
   }),
 
   actions: {

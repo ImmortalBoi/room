@@ -12,11 +12,11 @@ console.log(chat)
 </script>
 <template>
   <div @click="user.setChat(props.chat)"
-    class="self-stretch flex w-full items-start justify-between gap-5 mt-5 max-md:flex-wrap max-md:justify-center hover:bg-secondary-100 rounded-lg px-3 hover:cursor-pointer"
+    class="self-stretch flex w-full items-start justify-between gap-5 mt-5 py-2 max-md:flex-wrap max-md:justify-center bg-primary-600 hover:bg-primary-700 rounded-lg px-3 hover:cursor-pointer"
   >
     <div class="flex flex-col my-auto">
       <div v-if="chat"
-        class="text-text-950 text-xl font-semibold tracking-wider self-stretch whitespace-nowrap"
+        class="text-text-950 text-md  tracking-wider self-stretch whitespace-nowrap"
       >
         {{ chat.chat_name }}
       </div>

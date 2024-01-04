@@ -1,6 +1,5 @@
 <script setup>
 import navbar from '../components/navbar.vue'
-import searchbar from '../components/searchbar.vue'
 import chatWrapper from '../components/chat/chat-wrapper.vue'
 import conversationWrapper from '../components/conversation/conversation-wrapper.vue'
 import emptyConversation from '../components/conversation/empty-conversation.vue'
@@ -29,7 +28,6 @@ watch(user.currentChatID, () => {
       <navbar />
       <div class="flex flex-col items-stretch w-[33%] ml-5 max-md:w-full h-full max-md:ml-0">
         <div class="flex flex-col h-[90%] mt-12 max-md:max-w-full">
-          <searchbar />
           <chatWrapper />
         </div>
       </div>

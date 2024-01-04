@@ -94,28 +94,15 @@ async function sendMessage() {
     class="relative shadow-sm bg-background-200 flex flex-col w-full h-[90%] mt-11 mx-auto rounded-3xl max-md:max-w-full max-md:mt-10"
   >
     <div
-      class="self-stretch flex flex-col-reverse w-full h-[10%] mt-1 pl-9 pr-6 max-md:max-w-full max-md:px-5"
+      class="flex flex-row items-center h-[10%] mt-1 pl-9 pr-6"
     >
-      <div class="self-stretch flex w-full items-start justify-between gap-5 max-md:flex-wrap">
-        <div class="self-stretch flex w-[353px] max-w-full items-start justify-between gap-5">
-          <div class="self-center flex flex-col grow shrink-0 basis-auto my-auto">
-            <div class="text-text-900 text-xl font-semibold tracking-widest self-stretch">
-              <!-- <span v-if="partnerData !== ''">{{ partnerData.user_nickname }}</span> -->
+            <div class="text-text-900 text-xl font-semibold ">
               <span v-if="partnerData !== ''">{{ conversation.chat_name }}</span>
             </div>
-            <div class="text-text-800 text-md font-light tracking-wider self-stretch mt-3.5">
-              Online - Last seen, 2.02pm
-            </div>
-          </div>
-        </div>
-        <div
-          class="self-center flex w-[193px] max-w-full items-start justify-between gap-5 my-auto max-md:justify-center"
-        ></div>
-      </div>
     </div>
 
-    <hr class="h-px mt-3 border-1 border-background-800 w-[90%] self-center" />
-    <div class="flex flex-col-reverse absolute inset-x-0 bottom-32 h-[73%] overflow-scroll">
+    <hr class="border-1 border-background-800 w-[90%] self-center" />
+    <div class="flex flex-col-reverse h-[75%] overflow-scroll">
       <template v-if="chatData" v-for="(chat,index) in chatData">
         <chatMessage v-if="chat.message_user === user.id" :chat-message="chat" :key="index" />
         <chatReply v-if="chat.message_user === partnerID" :chat-message="chat" :key="index"/>
@@ -123,16 +110,16 @@ async function sendMessage() {
     </div>
 
     <div
-      class="self-stretch absolute inset-x-0 h-[7%] bottom-6 flex w-full items-start justify-between gap-5 mt-14 px-6 max-md:flex-wrap my-6"
+      class="h-[5%] flex w-full items-start justify-between gap-5 px-6"
     >
       <div
-        class="bg-background-50 bg-opacity-90 flex w-full basis-auto items-start justify-between gap-5 pl-6 pr-6 py-5 rounded-3xl self-start max-md:flex-wrap max-md:px-5"
+        class="bg-background-50 bg-opacity-90 flex w-full basis-auto items-start justify-between gap-5 px-2 py-2 rounded-xl mt-2 self-start max-md:flex-wrap max-md:px-5"
       >
         <textarea
           @keyup.enter="sendMessage"
           v-model="text"
           type="text"
-          class="text-zinc-800 bg-background-50 text-l font-light tracking-wider self-center grow basis-auto my-auto focus:outline-none"
+          class="text-zinc-800 bg-background-50 text-sm font-light tracking-wider self-center grow basis-auto focus:outline-none"
           placeholder="Type your message here..."
         ></textarea>
       </div>

@@ -20,7 +20,9 @@ async function SignUp() {
       const userID = auth.currentUser.uid;
       await setDoc(doc(db, "users", userID), {
           user_nickname: username.value,
-          user_pfp: ''
+          user_pfp: '',
+          friends:[],
+          friend_requests:[]
       }).then(()=>{
         id.value = userID
         router.push('/')

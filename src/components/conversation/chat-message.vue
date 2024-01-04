@@ -31,14 +31,14 @@ function formatDate(date) {
 <template>
   <div class="flex flex-col self-end">
     <div
-      class="flex w-full flex-col items-start gap-1 mt-9 pr-10 self-end max-md:flex-wrap max-md:pr-5"
+      class="flex w-full flex-col items-start gap-1 mt-2 pr-10 self-end max-md:flex-wrap max-md:pr-5"
     >
       <div
-        class="text-white text-2xl self-end tracking-widest bg-primary-600 grow basis-auto pl-5 pr-3 py-4 rounded-3xl max-md:max-w-full max-md:px-5"
+        class="text-white text-sm self-end tracking-widest bg-primary-600 grow basis-auto pl-3 pr-2 pt-3 pb-2 rounded-xl max-md:max-w-full max-md:px-5"
       >
         {{ props.chatMessage.message_text }}
       </div>
-      <div class="text-neutral-500 text-xl font-light tracking-wider mt-1">
+      <div class="text-neutral-500 text-xs font-light tracking-wider mt-1">
         {{ formatDate(new Date(props.chatMessage.message_time.seconds * 1000)) }}
       </div>
     </div>
