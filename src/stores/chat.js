@@ -1,29 +1,36 @@
 import { defineStore } from 'pinia'
 import { db } from '../firebase'
-import { collection, query, where, getDocs } from 'firebase/firestore'
+import { collection, query, where, onSnapshot, orderBy } from 'firebase/firestore'
 import { useUserStore } from './user'
+import { nextTick } from 'vue'
 
 export const useChatStore = defineStore('chat', {
   state: () => ({
-    dm_chats: [],
-    gm_chats: [],
+    chats: [],
     user: useUserStore(),
+    chatRender: true
   }),
   actions: {
-    async findChats(id) {
+    findChats() {
       const chatsRef = collection(db, 'chats')
-      const q = query(chatsRef, where('chat_users', 'array-contains', this.user.id))
-      await getDocs(q).then((querySnapshot) => {
-        querySnapshot.forEach((docu) => {
-          console.log(docu.data())
-          if (docu.data().type == 'dm') {
-            console.log(this.dm_chats.values)
-            this.dm_chats.push(docu.id)
-          } else {
-            this.gm_chats.push(docu.id)
-          }
-        })
+      const q = query(
+        chatsRef,
+        where('chat_users', 'array-contains', this.user.id),
+        orderBy('last_message', 'desc') // Order the results by 'last_message' in descending order
+      )
+
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        this.chats = querySnapshot.docs.map((doc) => doc.id)
       })
+
+      // Remember to unsubscribe when you no longer want to listen for updates
+      return unsubscribe
+    },
+    async sortChats() {
+      this.chatRender = false
+      this.chats.sort((a, b) => a.last_message - b.last_message)
+      await nextTick();
+      this.chatRender = true
     }
   }
 })

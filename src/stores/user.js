@@ -2,21 +2,19 @@ import { defineStore } from 'pinia'
 import { db } from '../firebase'
 import { useDocument } from 'vuefire'
 import { collection, doc } from 'firebase/firestore'
+import { nextTick } from 'vue'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    id: 'TD6vm3X0klMCMQmN7Hde',
-    userInfo: useDocument(doc(collection(db, 'users'), 'TD6vm3X0klMCMQmN7Hde')),
+    id: '',
     currentChatID: '',
-    key: 0
   }),
+
   actions: {
-    reRender() {
-      this.key += 1
-      console.log(this.key)
-    },
-    setChat(id) {
+    async setChat(id) {
       console.log('chat ID set: ', id)
+      this.currentChatID = '';
+      await nextTick()
       this.currentChatID = id
     }
   }

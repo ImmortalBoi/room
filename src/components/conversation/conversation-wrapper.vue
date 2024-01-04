@@ -5,15 +5,18 @@ import { useDocument } from 'vuefire'
 import { collection, doc, addDoc, Timestamp, updateDoc, arrayUnion } from 'firebase/firestore'
 import { db } from '../../firebase'
 import { useUserStore } from '../../stores/user'
-import { reactive, ref, watch } from 'vue'
+import { useChatStore } from '../../stores/chat'
+import { reactive, ref, watch, defineProps } from 'vue'
 
 const user = useUserStore()
+const chat = useChatStore()
 let partnerData = reactive({})
 let chatData = reactive([])
 let partnerID = ref('')
 let text = ref('')
+const props = defineProps(['ChatID'])
 
-let conversationRef = doc(collection(db, 'chats'), user.currentChatID)
+let conversationRef = doc(collection(db, 'chats'), props.ChatID)
 let { data: conversation, promise } = useDocument(conversationRef)
 promise.value.then((conversation) => {
   console.log('changed')
@@ -49,7 +52,7 @@ function findPartnerData() {
 
 function findMessageData() {
   if(conversation.data.value){
-    for (const _message in conversation.data.value.chat_messages.slice(0,-1)) {
+    for (const _message in conversation.data.value.chat_messages) {
       console.log(conversation.data.value.chat_messages[_message])
       const { data: message, promise } = useDocument(
         doc(collection(db, 'messages'), conversation.data.value.chat_messages[_message])
@@ -66,10 +69,9 @@ function findMessageData() {
   }
 }
 
-
 async function sendMessage() {
   await addDoc(collection(db, 'messages'), {
-    message_chat: user.currentChatID,
+    message_chat: props.ChatID,
     message_text: text.value,
     message_time: new Timestamp(new Date().getTime() / 1000, 0),
     message_user: user.id
@@ -80,8 +82,13 @@ async function sendMessage() {
       chat_messages: arrayUnion(message.id)
     })
   })
+  await updateDoc(conversationRef,{
+    last_message: new Timestamp(new Date().getTime() / 1000, 0)
+  })
+  chat.sortChats()
 }
 </script>
+
 <template>
   <div
     class="relative shadow-sm bg-background-200 flex flex-col w-full h-[90%] mt-11 mx-auto rounded-3xl max-md:max-w-full max-md:mt-10"
@@ -92,10 +99,11 @@ async function sendMessage() {
       <div class="self-stretch flex w-full items-start justify-between gap-5 max-md:flex-wrap">
         <div class="self-stretch flex w-[353px] max-w-full items-start justify-between gap-5">
           <div class="self-center flex flex-col grow shrink-0 basis-auto my-auto">
-            <div class="text-text-900 text-3xl font-semibold tracking-widest self-stretch">
-              <span v-if="partnerData !== ''">{{ partnerData.user_nickname }}</span>
+            <div class="text-text-900 text-xl font-semibold tracking-widest self-stretch">
+              <!-- <span v-if="partnerData !== ''">{{ partnerData.user_nickname }}</span> -->
+              <span v-if="partnerData !== ''">{{ conversation.chat_name }}</span>
             </div>
-            <div class="text-text-800 text-xl font-light tracking-wider self-stretch mt-3.5">
+            <div class="text-text-800 text-md font-light tracking-wider self-stretch mt-3.5">
               Online - Last seen, 2.02pm
             </div>
           </div>
@@ -107,7 +115,7 @@ async function sendMessage() {
     </div>
 
     <hr class="h-px mt-3 border-1 border-background-800 w-[90%] self-center" />
-    <div class="flex flex-col-reverse absolute inset-x-0 bottom-32 h-[75%] overflow-scroll">
+    <div class="flex flex-col-reverse absolute inset-x-0 bottom-32 h-[73%] overflow-scroll">
       <template v-if="chatData" v-for="(chat,index) in chatData">
         <chatMessage v-if="chat.message_user === user.id" :chat-message="chat" :key="index" />
         <chatReply v-if="chat.message_user === partnerID" :chat-message="chat" :key="index"/>
@@ -124,7 +132,7 @@ async function sendMessage() {
           @keyup.enter="sendMessage"
           v-model="text"
           type="text"
-          class="text-zinc-800 bg-background-50 text-2xl font-light tracking-wider self-center grow basis-auto my-auto focus:outline-none"
+          class="text-zinc-800 bg-background-50 text-l font-light tracking-wider self-center grow basis-auto my-auto focus:outline-none"
           placeholder="Type your message here..."
         ></textarea>
       </div>
