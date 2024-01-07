@@ -46,18 +46,18 @@ Follow these steps to set up and run the project on your local machine.
 
 In ./src create a firebase.js file and use this template
 
-    ```javascript
-    import { initializeApp } from 'firebase/app'
-    import { getFirestore } from 'firebase/firestore'
-    import { getAuth } from "firebase/auth";
+```js
+import { initializeApp } from 'firebase/app'
+import { getFirestore } from 'firebase/firestore'
+import { getAuth } from "firebase/auth";
 
-    export const firebaseApp = initializeApp({
-    // Put your API information here
-    })
+export const firebaseApp = initializeApp({
+// Put your API information here
+})
 
-    // used for the firestore refs
-    export const db = getFirestore(firebaseApp)
-    export const auth = getAuth(firebaseApp);
-    ```
+// used for the firestore refs
+export const db = getFirestore(firebaseApp)
+export const auth = getAuth(firebaseApp);
+```
 
 Enable Authentication and Firestore in your firebase Application
