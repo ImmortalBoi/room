@@ -18,13 +18,12 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
-.vscode/
-.firebase/
-.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+.firebase
+.vscode
 src/firebase.js
