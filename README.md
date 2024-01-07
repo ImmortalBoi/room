@@ -1,17 +1,17 @@
 # Room - Social Media App 
 
-A web app for chatting, calling and interactions between friends and groups. Using WebRTC for video calling, firestore for the real time chat and post updates, alongside sharing,tagging and group chat functionalities with auth. Made with Vue and Pinia.
+A web app for chatting, calling and interactions between friends and groups. Using WebRTC for video calling, firestore for the real time chat and post updates, alongside sharing,tagging and group chat functionalities with auth. Made with Vue, Pinia and Tailwind.
 
 # Screenshots
 
 ## Home Tab
-![Home Tab](readme/"Home Tab.png")
+![Home Tab](https://github.com/ImmortalBoi/room-up/blob/main/readme/Home%20Tab.png?raw=true)
 
 ## Chat Tab
-![Chat Tab](readme/"Home Tab.png")
+![Chat Tab](https://github.com/ImmortalBoi/room-up/blob/main/readme/Chat%20Tab.png?raw=true)
 
 ## Friends Tab
-![Friends Tab](readme/"Home Tab.png")
+![Friends Tab](https://github.com/ImmortalBoi/room-up/blob/main/readme/Friends%20Tab.png?raw=true)
 
 # Setup
 
