@@ -1,6 +1,6 @@
 # Room - Social Media App 
 
-A web app for chatting, calling and interactions between friends and groups. Using WebRTC for video calling, firestore for the real time chat and post updates, alongside sharing,tagging and group chat functionalities with auth. Made with Vue, Pinia and Tailwind.
+A web app for chatting, calling and interactions between friends and groups. Using WebRTC for video calling, firestore for the real time chat and post updates, alongside image posting, sharing, tagging and group chat functionalities with auth. Made with Vue, Pinia and Tailwind.
 
 # Demo
 <a href="https://webwhiteboard.com/board/t30RQhLyvGRsd11SbTheStiK3G2r8DEy/">Link to Demo</a>
@@ -48,6 +48,10 @@ In ./src create a firebase.js file and use this template
 
 ```js
 import { initializeApp } from 'firebase/app'
+<<<<<<< Updated upstream
+=======
+import { getStorage } from "firebase/storage";
+>>>>>>> Stashed changes
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from "firebase/auth";
 
@@ -58,6 +62,10 @@ export const firebaseApp = initializeApp({
 // used for the firestore refs
 export const db = getFirestore(firebaseApp)
 export const auth = getAuth(firebaseApp);
+<<<<<<< Updated upstream
+=======
+export const storage = getStorage(firebaseApp)
+>>>>>>> Stashed changes
 ```
 
-Enable Authentication and Firestore in your firebase Application
+Enable Storage, Authentication and Firestore in your firebase Application
