@@ -99,7 +99,7 @@ async function updateNickname(params) {
         </svg>
         <span>Friends</span>
       </div>
-      <friendListing v-if="renderFriends" v-for="friend in user.friends" :friendID="friend" :userRef="userRef" />
+      <friendListing v-if="renderFriends" v-for="friend in user.friends" :friendID="friend" :userRef="userRef" :userID="id"/>
     </div>
   </div>
 </template>

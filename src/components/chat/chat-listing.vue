@@ -16,7 +16,7 @@ console.log(chat)
   >
     <div class="flex flex-col my-auto">
       <div v-if="chat"
-        class="text-text-950 text-md  tracking-wider self-stretch whitespace-nowrap"
+        class="text-white text-md  tracking-wider self-stretch whitespace-nowrap"
       >
         {{ chat.chat_name }}
       </div>

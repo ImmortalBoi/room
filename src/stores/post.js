@@ -9,7 +9,8 @@ export const usePostStore = defineStore('postData', {
     postsDocs: [],
     postsID: [],
     user: useUserStore(),
-    postRender: true
+    postRender: true,
+    unsubscribe: [] 
   }),
   actions: {
     findPosts() {
@@ -21,6 +22,8 @@ export const usePostStore = defineStore('postData', {
       const unsubscribe1 = onSnapshot(q1, (querySnapshot) => {
         querySnapshot.docs.forEach(async (doc) => {
           if (!this.postsID.includes(doc.id)) {
+            console.log("Passed the public Visibility")
+            console.log(doc.id)
             this.postRender = false
             this.postsDocs.push(doc)
             this.postsID.push(doc.id)
@@ -34,6 +37,8 @@ export const usePostStore = defineStore('postData', {
       const unsubscribe2 = onSnapshot(q2, (querySnapshot) => {
         querySnapshot.docs.forEach(async (doc) => {
           if (!this.postsID.includes(doc.id)) {
+            console.log("Passed the specific/friends visibility")
+            console.log(doc.id)
             this.postRender = false
             this.postsDocs.push(doc)
             this.postsID.push(doc.id)
@@ -47,6 +52,8 @@ export const usePostStore = defineStore('postData', {
       const unsubscribe3 = onSnapshot(q3, (querySnapshot) => {
         querySnapshot.docs.forEach(async (doc) => {
           if (!this.postsID.includes(doc.id)) {
+            console.log("Passed the ownership Visibility")
+            console.log(doc.id)
             this.postRender = false
             this.postsDocs.push(doc)
             this.postsID.push(doc.id)
@@ -58,13 +65,17 @@ export const usePostStore = defineStore('postData', {
       })
       
       // Return a function that unsubscribes from all three listeners
-      return () => {
-        unsubscribe1()
-        unsubscribe2()
-        unsubscribe3()
-      }
+      this.unsubscribe = [
+        unsubscribe1,
+        unsubscribe2,
+        unsubscribe3
+      ]
+    },
+    unsubscribe(){
+      this.unsubscribe[0]()
+      this.unsubscribe[1]()
+      this.unsubscribe[2]()
     }
-
     // async sortChats() {
     //   this.chatRender = false
     //   this.chats.sort((a, b) => a.last_message - b.last_message)

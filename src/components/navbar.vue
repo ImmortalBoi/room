@@ -2,12 +2,15 @@
 import { auth } from '../firebase'
 import { signOut } from 'firebase/auth'
 import { useUserStore } from '../stores/user'
+import { usePostStore } from '../stores/post'
 import router from '../router'
 
+const postStore = usePostStore()
 const userStore = useUserStore()
 
 async function SignOut() {
   await signOut(auth)
+  postStore.$reset()
   userStore.$reset()
   router.push('/login')
 }

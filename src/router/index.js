@@ -4,8 +4,9 @@ import HomeView from '../views/HomeView.vue'
 import SignUpView from '../views/SignUpView.vue'
 import LoginView from '../views/loginView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import RoomCreateView from '../views/RoomCreateView.vue'
+import RoomJoinView from '../views/RoomJoinView.vue'
 import { useUserStore } from '../stores/user'
-
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +16,8 @@ const router = createRouter({
     { path: '/signup', component: SignUpView },
     { path: '/login', component: LoginView },
     { path: '/profile', component: ProfileView },
+    { path: '/roomJoin', component: RoomJoinView },
+    { path: '/roomCreate', component: RoomCreateView },
   ] 
 })
 
