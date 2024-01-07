@@ -48,10 +48,7 @@ In ./src create a firebase.js file and use this template
 
 ```js
 import { initializeApp } from 'firebase/app'
-<<<<<<< Updated upstream
-=======
 import { getStorage } from "firebase/storage";
->>>>>>> Stashed changes
 import { getFirestore } from 'firebase/firestore'
 import { getAuth } from "firebase/auth";
 
@@ -62,10 +59,7 @@ export const firebaseApp = initializeApp({
 // used for the firestore refs
 export const db = getFirestore(firebaseApp)
 export const auth = getAuth(firebaseApp);
-<<<<<<< Updated upstream
-=======
 export const storage = getStorage(firebaseApp)
->>>>>>> Stashed changes
 ```
 
 Enable Storage, Authentication and Firestore in your firebase Application
