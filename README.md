@@ -2,7 +2,7 @@
 
 A web app for chatting, calling and interactions between friends and groups. Using WebRTC for video calling, firestore for the real time chat and post updates, alongside sharing,tagging and group chat functionalities with auth. Made with Vue, Pinia and Tailwind.
 
-#Demo
+# Demo
 <a href="https://webwhiteboard.com/board/t30RQhLyvGRsd11SbTheStiK3G2r8DEy/">Link to Demo</a>
 
 # Screenshots
