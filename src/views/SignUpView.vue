@@ -13,6 +13,7 @@ let email = ref('')
 let username = ref('')
 let password = ref('')
 let confirmPassword = ref('')
+const errorMessage = ref('')
 
 async function SignUp() {
   await createUserWithEmailAndPassword(auth, email.value, password.value)
@@ -30,8 +31,8 @@ async function SignUp() {
     })
     .catch((error) => {
       const errorCode = error.code
-      const errorMessage = error.message
-      console.log(errorMessage)
+      errorMessage.value = error.message
+      console.log(errorMessage.value)
       // ..
     })
 }
@@ -98,7 +99,7 @@ async function SignUp() {
               >
               <input
                 v-model="confirmPassword"
-                type="confirm-password"
+                type="password"
                 name="confirm-password"
                 id="confirm-password"
                 placeholder="••••••••"
@@ -124,6 +125,9 @@ async function SignUp() {
                   ></label
                 >
               </div>
+            </div>
+            <div class="text-accent-500">
+              {{ errorMessage }}
             </div>
             <button
               @click="SignUp()"

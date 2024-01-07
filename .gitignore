@@ -18,7 +18,8 @@ coverage
 /cypress/screenshots/
 
 # Editor directories and files
-.vscode/*
+.vscode
+.firebase
 !.vscode/extensions.json
 .idea
 *.suo
@@ -26,3 +27,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+src/firebase.js
